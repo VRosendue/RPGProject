@@ -1,23 +1,29 @@
 package items;
 
-public class armor expands Item {
+import dependencies.attribute.mainAttribute;
+import dependencies.equipment.*;
+
+public class armor extends Item {
 	
-	private final PrimaryAttribute bonusAttributes;
-	private final ArmorType armorType
+	private final mainAttribute bonusAttribute;
+	private final ArmorType armorType;
 	
-	public armor(String name, Slot slot, int requiredLevel, ArmorType armorType, int bonusStrength, int bonusDexterity, int bonusIntelligence)
+	
+	//assign bonusAttributes for armors
+	public armor(String name, int requiredLevel,ArmorType armorType, piece armorPiece, int bonusHealth, int bonusStrength, int bonusDexterity, int bonusIntelligence)
 	{
-		super(name, slot, requiredLevel);
+		super(name, armorPiece, requiredLevel);
 		this.armorType = armorType;
-		bonusAttributes = new PrimaryAttribute(bonusStrength, bonusDexterity, bonusIntelligence);
+		this.bonusAttribute = new mainAttribute(bonusHealth, bonusStrength, bonusDexterity, bonusIntelligence);
 	}
 
-	
-	public PrimaryAttribute getBonusAttributes() {
-		return bonusAttributes;
+	public mainAttribute getBonusAttribute() {
+		return bonusAttribute;
 	}
-	
+
 	public ArmorType getArmorType() {
 		return armorType;
 	}
+	
 }
+

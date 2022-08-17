@@ -1,59 +1,48 @@
 package characters;
 
+import dependencies.attribute.mainAttribute;
+import items.equipment;
+import items.weapon;
+import items.armor;
+import exceptions.*;
+
 public abstract class player {
-	
-	private final String name;
+
 	private int level = 1;
-	protected PrimaryAttribute characterAttributes;
-	private HashMap<Slot, Item> equipment;
-	protected List<WeaponType> validWeaponTypes;
-	protected List<ArmorType> validArmorTypes;
-	
-	public player(String name, int strength, int dexterity, int intelligence) {
+	protected mainAttribute classAttribute;
+    private equipment currentEquipment;
+	private final String name;
+
+	public player(String name, int health, int strength, int dexterity, int intelligence) {
 		this.name = name;
-		characterAttributes = new PrimaryAttribute(strength,dexterity,intelligence);
-		initializeEquipment();
+		classAttribute = new mainAttribute(health, strength, dexterity, intelligence);
+		setCurrentEquipment(new equipment());
 	}
-	
-	private void initializeEquipment() {
-		equipment = new HashMap<>();
-		equipment.put(Slot.HEAD, null);
-		equipment.put(Slot.BODY, null);
-		equipment.put(Slot.LEGS, null);
-		equipment.put(Slot.WEAPON, null);
-		
-	}
-	
-	public String equip(Weapon weapon) throws InvalidWeaponException {
-		if(weapon.getRequiredLevel() > level)
-			throw new InvalidWeaponException("Weapon level too high");
-		
-		if(!validWeaponTypes.contains(weapon.getWeaponType()))
-			throw new InvalidWeaponException("Wrong weapon type");
-		
-		equipment.put(weapon.getSlot(), weapon);
-		return "Weapon equipped";
-		
-		
-	}
-	
-	public String levelUp() {
-		level++;
-		return name + "levelled up, they are now level" + level;
-		
-	}
-	
+
+	public abstract void equipWeapon(weapon weapon) throws IncorrectWeaponTypeException, PlayerTooLowException;
+
+	public abstract void equipArmor(armor armor) throws IncorrectArmorTypeException, PlayerTooLowException;
+
+	public abstract void levelUp();
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getLevel() {
 		return level;
 	}
-	
-	public PrimaryAttribute getCharacterAttributes() {
-		return characterAttributes;
+
+	public mainAttribute getclassAttribute() {
+		return classAttribute;
 	}
-	
+
+	public equipment getCurrentEquipment() {
+		return currentEquipment;
+	}
+
+	public void setCurrentEquipment(equipment currentEquipment) {
+		this.currentEquipment = currentEquipment;
+	}
 
 }

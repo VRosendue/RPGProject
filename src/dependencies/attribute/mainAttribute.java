@@ -7,7 +7,7 @@ public class mainAttribute {
 	private int health;
 	
 	
-	
+	//Setting main attributes
 	public mainAttribute(int health, int strength, int dexterity, int intelligence) {
 		this.health = health;
 		this.strength = strength;
@@ -15,24 +15,6 @@ public class mainAttribute {
 		this.intelligence = intelligence;
 	}
 	
-	/*@Override
-	//public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null) || getClass() != o.getClass())) return false;
-		
-		PrimaryAttribute that = (PrimaryAttribute) o;
-		
-		if (strength != that.strength) return false;
-		if (dexterity != that.dexterity) return false;
-		return intelligence == that.intelligence;*/
-	}
-	
-	//@Override
-	//public int hashCode() {
-		//int result = strength;
-		//result = 31 * result + dexterity;
-		//result = 31 * result + intelligence;
-		//return result;
 	public int getHealth() {
 		return health;
 	}
@@ -49,7 +31,7 @@ public class mainAttribute {
 		return intelligence;
 		
 	}
-	
+	//setting up for level up incrementals
 	public void incrementStats(int health, int strength, int dexterity, int intelligence) {
 		this.health += health;
 		this.strength += strength;

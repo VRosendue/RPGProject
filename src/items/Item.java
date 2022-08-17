@@ -1,12 +1,14 @@
 package items;
 
+import dependencies.equipment.piece;
+
 public class Item {
 	
 	private final String name;
-	private final Slot slot;
+	private final piece slot;
 	private final int requiredLevel;
 	
-	public Item(String name, Slot slot, int requiredLevel) {
+	public Item(String name, piece slot, int requiredLevel) {
 		this.name = name;
 		this.slot = slot;
 		this.requiredLevel = requiredLevel;
@@ -16,7 +18,7 @@ public class Item {
 		return name;
 	}
 	
-	public Slot getSlot() {
+	public piece getSlot() {
 		return slot;
 	}
 	
